@@ -1,0 +1,25 @@
+{
+  "name": "geode-language",
+  "displayName": "Geode Language",
+  "description": "A human first geoscience configuration format, for generating input decks for various simulation frameworks.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "geode",
+      "aliases": ["Geode", "geode"],
+      "extensions": [".geode.yaml", ".geode", ".geode.yml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "geode",
+      "scopeName": "source.yaml",
+      "path": "./syntaxes/geode.tmLanguage.json"
+    }]
+  }
+}
