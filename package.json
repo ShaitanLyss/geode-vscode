@@ -3,6 +3,10 @@
   "displayName": "Geode for Geoscience",
   "description": "A human first geoscience configuration format, for generating input decks for various simulation frameworks.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaitanLyss/geode-vscode"
+  },
   "engines": {
     "vscode": "^1.95.0"
   },
