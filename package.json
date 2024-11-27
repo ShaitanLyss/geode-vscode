@@ -1,6 +1,6 @@
 {
-  "name": "geode-language",
-  "displayName": "Geode Language",
+  "name": "geode-geoscience",
+  "displayName": "Geode for Geoscience",
   "description": "A human first geoscience configuration format, for generating input decks for various simulation frameworks.",
   "version": "0.0.1",
   "engines": {
@@ -10,16 +10,36 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "geode",
-      "aliases": ["Geode", "geode"],
-      "extensions": [".geode.yaml", ".geode", ".geode.yml"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "geode",
-      "scopeName": "source.yaml",
-      "path": "./syntaxes/geode.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "yaml",
+        "aliases": [
+          "Geode",
+          "geode"
+        ],
+        "extensions": [
+          ".geode.yaml",
+          ".geode",
+          ".geode.yml"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "yaml",
+        "scopeName": "source.yaml",
+        "path": "./syntaxes/geode.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "yaml.schemas": {
+        "./geode-schema.json": [
+          "*.geode.yaml",
+          "*.geode.yml",
+          "*.geode"
+        ]
+      }
+    }
   }
 }

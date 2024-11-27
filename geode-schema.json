@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GeoscienceModel",
+  "type": "object",
+  "required": [
+    "domain",
+    "physics"
+  ],
+  "properties": {
+    "physics": {
+      "$ref": "#/definitions/Physics"
+    },
+    "domain": {
+      "$ref": "#/definitions/Domain"
+    },
+    "materials": {
+      "default": {},
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Material"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Physics": {
+      "description": "Hello Lyss, you're such a bg.",
+      "type": "object",
+      "required": [
+        "compositional"
+      ],
+      "properties": {
+        "compositional": {
+          "$ref": "#/definitions/CompositionalPhysics"
+        }
+      }
+    },
+    "CompositionalPhysics": {
+      "title": "Compositional Physics",
+      "description": "Describe compositional physics YEAH",
+      "type": "object",
+      "required": [
+        "components",
+        "phases"
+      ],
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Component"
+          }
+        },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Component": {
+      "description": "Represents a component in a compositional physics model, such as a molecule or chemical species.",
+      "type": "object",
+      "required": [
+        "mass"
+      ],
+      "properties": {
+        "mass": {
+          "$ref": "#/definitions/Quantity"
+        }
+      }
+    },
+    "Quantity": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^\\s*([+-]?[\\d_ ]*?\\.?[\\d_ ]+?(?:e(?:\\+|-)?[.\\d]+)?)[ \\t]*([^\\d\\s.](?:.*?[^.])?)?\\s*$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "Domain": {
+      "type": "object",
+      "required": [
+        "cuboid",
+        "materials"
+      ],
+      "properties": {
+        "cuboid": {
+          "$ref": "#/definitions/Cuboid"
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Cuboid": {
+      "type": "object",
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "properties": {
+        "x": {
+          "$ref": "#/definitions/Range"
+        },
+        "y": {
+          "$ref": "#/definitions/Range"
+        },
+        "z": {
+          "$ref": "#/definitions/Range"
+        }
+      }
+    },
+    "Range": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^\\s*([+-]?[\\d_ ]*?\\.?[\\d_ ]+?(?:e(?:\\+|-)?[.\\d]+)?)[ \\t]*([^\\d\\s.](?:.*?[^.])?)?\\s*\\s*..\\s*\\s*([+-]?[\\d_ ]*?\\.?[\\d_ ]+?(?:e(?:\\+|-)?[.\\d]+)?)[ \\t]*([^\\d\\s.](?:.*?[^.])?)?\\s*$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "Material": {
+      "type": "object",
+      "properties": {
+        "pressure": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ReferenceQuantity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "porosity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ReferenceQuantity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "permeability": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DiagonalTensor_for_Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "compressibility": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ReferenceQuantity": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^\\s*(reference|ref)?\\s*([+-]?[\\d_ ]*?\\.?[\\d_ ]+?(?:e(?:\\+|-)?[.\\d]+)?)[ \\t]*([^\\d\\s.](?:.*?[^.])?)?\\s*$"
+        },
+        {
+          "type": "number"
+        }
+      ]
+    },
+    "DiagonalTensor_for_Quantity": {
+      "type": "object",
+      "required": [
+        "xx",
+        "yy",
+        "zz"
+      ],
+      "properties": {
+        "xx": {
+          "$ref": "#/definitions/Quantity"
+        },
+        "yy": {
+          "$ref": "#/definitions/Quantity"
+        },
+        "zz": {
+          "$ref": "#/definitions/Quantity"
+        }
+      }
+    }
+  }
+}
