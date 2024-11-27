@@ -1,6 +1,6 @@
-# geode-language README
+# Geode VSCode
 
-This is the README for your extension "geode-language". After writing up a brief description, we recommend including the following sections.
+VSCode extension for adding support for the geoscience configuration file format. 
 
 ## Features
 
