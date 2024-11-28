@@ -2,7 +2,7 @@
   "name": "geode-geoscience",
   "displayName": "Geode for Geoscience",
   "description": "A human first geoscience configuration format, for generating input decks for various simulation frameworks.",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "selene-lyss",
   "repository": {
     "type": "git",
@@ -15,6 +15,20 @@
     "Programming Languages"
   ],
   "contributes": {
+    "yamlValidation": [
+      {
+        "fileMatch": ".geode.yaml",
+        "url": "./geode-schema.json"
+      },
+            {
+        "fileMatch": ".geode.yml",
+        "url": "./geode-schema.json"
+      },
+      {
+        "fileMatch": ".geode",
+        "url": "./geode-schema.json"
+      }
+    ],
     "languages": [
       {
         "id": "yaml",
@@ -36,15 +50,6 @@
         "scopeName": "source.yaml",
         "path": "./syntaxes/geode.tmLanguage.json"
       }
-    ],
-    "configurationDefaults": {
-      "yaml.schemas": {
-        "./geode-schema.json": [
-          "*.geode.yaml",
-          "*.geode.yml",
-          "*.geode"
-        ]
-      }
-    }
+    ]
   }
 }
